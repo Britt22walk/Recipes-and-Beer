@@ -1,0 +1,44 @@
+*{
+    box-sizing: border-box;
+}
+
+h1{
+    align-items: center;
+}
+.parent{
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+}
+
+.child{
+    flex-basis: 10%;
+    
+}
+
+.results{
+    border: 1px black solid;
+    padding: 5px;
+}
+
+
+form label{
+    display: block;
+    margin-top: 5px;
+}
+
+form input[type="checkbox"]+ label{
+    display: inline;
+    font-size: 16px;
+} 
+
+div{
+    margin: 5%;
+    border: 1px black solid;
+    padding: 5%;
+    max-width: fit-content;
+}
+
+.small-text{
+    font-size: 10px;
+}
