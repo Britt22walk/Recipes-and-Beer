@@ -13,14 +13,14 @@
         </nav>
       </header>
     <main>
-        <section class="parent">
-            <form id="js-search-form">
+        <section>
+            <form id="js-search-form" class="parent">
                 <div class="child">
                 <h3>Search for recipe by keyword</h3>
                 <label for="js-keyword-search">Keyword</label>
                     <input id="js-keyword-search" type="text">
                 </div>
-                <div class="child">
+                <!--<div class="child">
                 <h3>Search for recipe by ingredients</h3>
                 <label for="js-ingredient-search1">Ingredient #1</label>
                     <input id="js-ingredient-search1" type="text">
@@ -28,23 +28,17 @@
                     <input id="js-ingredient-search2" type="tex">
                 <label for="js-ingredient-search3">Ingredient #3</label>
                     <input id="js-ingredient-search3" type="text">
-                </div>
+                </div> -->
                 <div class="child">
                 <h3>Filter By Diet</h3>
-                <label name="js-diet-type" value="vegetarian">Vegetarian</label>
-                    <input id="js-diet-type" type="checkbox">
-                <label name="js-diet-type" value="vegan">Vegan</label>
-                    <input id="js-diet-type" type="checkbox">
-                <label name="js-diet-type" value="dairy-free">Dairy Free</label>
-                    <input id="js-diet-type" type="checkbox">
-                <label name="js-diet-type" value="gluten-free">Gluten- ree</label>
-                    <input id="js-diet-type" type="checkbox">
-                <label name="js-diet-type" value="nut-free">Nut Free</label>
-                    <input id="js-diet-type" type="checkbox">
-                <label name="js-diet-type" value="low-fat">Low Fat</label>
-                    <input id="js-diet-type" type="checkbox">
-                <label name="js-diet-type" value="low-carb">Low Carb</label>
-                    <input id="js-diet-type" type="checkbox">
+                <label name="js-diet-type">Vegetarian</label>
+                    <input id="js-diet-type-vegetarian" value="vegetarian" type="checkbox">
+                <label name="js-diet-type">Vegan</label>
+                    <input id="js-diet-type-vegan" value="vegan" type="checkbox">
+                <label name="js-diet-type">Dairy Free</label>
+                    <input id="js-diet-type-dairy-free" value="dairy-free" type="checkbox">
+               <label name="js-diet-type">Nut Free</label>
+                    <input id="js-diet-type-nut-free" value="tree-nut-free" type="checkbox">
                 </div>
                 <div class="child">
                 <button type="submit">Submit</button>
@@ -53,13 +47,16 @@
             </form>
         </section>
         <br>
-        <section id="js-results" class="parent">
-            <h2 class="child">Results</h2>
-                <div class="child">
+        <section id="js-results" class="parent hidden">
+            <h2>Results</h2>
+                <!--
+                <br>
+                <div class="results-div">
                     <h3>Gnocchi with Mozzerella and basil</h3>
                     <img src='gnocchi.jpg'>
                 </div>
-                <br>
+                <br> 
+                -->
         </section>
     </main>
     <footer>

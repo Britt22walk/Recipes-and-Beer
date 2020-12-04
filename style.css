@@ -19,6 +19,11 @@ h1{
     border: 5px #ff8a5b solid;
 }
 
+.results-div{
+    width: 80%;
+    justify-content: center;
+}
+
 img{
     width: 100%;
 }
@@ -58,10 +63,10 @@ button{
 div{
     margin: 2%;
     border: 5px #FF8A5B solid;
-    border-radius: 5px;
+    border-radius: 10px;
     padding: 2%;
     background-color: #25ced1;
-    width: 80%;
+    width: 90%;
     
 }
 
@@ -74,7 +79,7 @@ div{
         display: flex;
         flex-flow: row wrap;
         align-items: center;
-        width: 600px;
+        padding:10px;
         margin: auto;
         justify-content: center;
     }
@@ -85,7 +90,7 @@ div{
     }
 
     img{
-        width: 100%;
+        width: 50%;
     }
 
     .results{
@@ -94,5 +99,10 @@ div{
         border-radius: 5px;
         margin: auto 600px;
         width: 100%;
+    }
+
+    form input[type="checkbox"]+ label{
+        font-size: 16px;
+        display: inline;
     }
 }
