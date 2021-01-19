@@ -2,6 +2,7 @@ let recipeUrl='https://api.edamam.com/search'
 let appId='4368d7f2'
 let apiKey='05ecbbc4506fdc8681ed7f7c905b3064'
 let totalResults=10
+let beerUrl='https://api.punkapi.com/v2/beers?'
 
 function getRecipes(query, dietFilter){
     let params={
@@ -21,14 +22,14 @@ function getRecipes(query, dietFilter){
     console.log(url);
 
     fetch(url)
-    .then(response=>{
-        if (response.ok){
-            return response.json();
-        }
-        throw new Error (response.statusText);
-    })
-    .then(responseJson=>displayRecipes(responseJson))
-    .catch (err => alert(`Something went wrong`));
+    .then(function (response) {
+            if (response.ok) {
+                return response.json()
+            }
+            throw new Error(response.statusText)
+        })
+        .then(responseJson=>displayRecipes(responseJson))
+        .catch (err => alert(`Something went wrong`));
 }
 
 
@@ -41,16 +42,11 @@ function formatQuery(params){
 
 function displayRecipes(responseJson){
     console.log(responseJson)
-    let ingredients=responseJson.hits[i].recipe.ingredientLines.map((a)=>{
-        return`<div>
-        <h3>Ingredients</h3>
-        <ul id="js-ingredients">
-        <li>${a}</li>
-        </ul>
-        < /div>`;
-    })
     for(let i=0; i<responseJson.hits.length; i++){
-        $('#js-results').append(`<div><h3>${responseJson.hits[i].recipe.label}</h3>
+        let ingredients=responseJson.hits[i].recipe.ingredientLines.map((a)=>{
+            return`<li>${a}</li>` 
+        });
+        $('#js-results').append(`<div class="recipe"><h3>${responseJson.hits[i].recipe.label}</h3>
         <img src="${responseJson.hits[i].recipe.image}" class="child"> 
         <div>
           <ul>
@@ -59,14 +55,48 @@ function displayRecipes(responseJson){
           </ul>
         </div>
         <div>
+        <h3>Ingredients</h3>
+        <ul id="js-ingredients">
         ${ingredients.join('')}
-        </div>` 
+        </ul>
+        <a href="${responseJson.hits[i].recipe.url}" class="button">View Instructions</a>
+        <button id="js-beer-results">Click for Beer Recs</button> 
+        </div>
+        <div id="js-beer-results-list" class="hidden">
+        </div> `
         )};
     $('#js-results').removeClass('hidden');
 }
 
-/*
-      <section class="child">
+
+function getBeerRec(){
+    $('main').on('click', '#js-beer-results', (event) => {
+        let query=$(event.target).closest(".recipe").children("h3").text()
+        query=query.replace(/\s+/g, '_')
+        let params = {
+            food: query,
+            per_page:3
+        }
+        let queryString = formatQuery(params)
+        let url = beerUrl + queryString
+        console.log(url)
+
+        fetch(url)
+            .then(response => {
+                if (response.ok) {
+                    return response.json()
+                }
+                    throw new Error(response.statusText)
+                })
+            .then(responseJson => console.log(responseJson))
+            .catch(err => alert(`Something went wrong`))
+        })} 
+
+/* 
+function displayBeers(){
+
+}
+     <section class="child">
         <h3>Beer Recomendations based of your recipe....</h3>
         <div>
           <h4>Beer Rec #1</h4>
@@ -96,7 +126,12 @@ function displayRecipes(responseJson){
             this citrusy pale ale with your friends. Or don't, it's your choice."</p>
         </div>`)
     })
-}*/
+}})*/
+
+function initialize(){
+    watchForm();
+    getBeerRec();
+}
 
 function watchForm(){
     $('form').submit(event =>{
@@ -106,7 +141,8 @@ function watchForm(){
         let dietFilter=$('input[type="checkbox"]:checked').val();
         console.log("Searching for " + keywordSearchTerm);
         getRecipes(keywordSearchTerm, dietFilter);
+
     }) 
 }
 
-$(watchForm)
+$(initialize)
