@@ -72,30 +72,32 @@ function displayRecipes(responseJson){
 function getBeerRec(){
     $('main').on('click', '#js-beer-results', (event) => {
         let query=$(event.target).closest(".recipe").children("h3").text()
-        query=query.replace(/\s+/g, '_')
-        let params = {
-            food: query,
-            per_page:3
+        query=query.split(" ")
+        console.log(query)
+        for(let i=0; i<query.length;i++){
+            let params = {
+                food: query[i],
+                per_page:1
+            }
+            let queryString = formatQuery(params)
+            let url = beerUrl + queryString
+            console.log(url)
+            fetch(url)
+                .then(response => {
+                    if (response.ok) {
+                        return response.json()
+                    }
+                        throw new Error(response.statusText)
+                    })
+                .then(responseJson => console.log(responseJson))
+                .catch(err => alert(`Something went wrong`))
         }
-        let queryString = formatQuery(params)
-        let url = beerUrl + queryString
-        console.log(url)
-
-        fetch(url)
-            .then(response => {
-                if (response.ok) {
-                    return response.json()
-                }
-                    throw new Error(response.statusText)
-                })
-            .then(responseJson => console.log(responseJson))
-            .catch(err => alert(`Something went wrong`))
-        })} 
-
-/* 
+        
+})}
+/*   
 function displayBeers(){
-
-}
+    console.log(responseJson)
+    for(let i=)
      <section class="child">
         <h3>Beer Recomendations based of your recipe....</h3>
         <div>
@@ -126,7 +128,7 @@ function displayBeers(){
             this citrusy pale ale with your friends. Or don't, it's your choice."</p>
         </div>`)
     })
-}})*/
+}*/
 
 function initialize(){
     watchForm();
