@@ -42,33 +42,41 @@ function formatQuery(params) {
 
 function displayRecipes(responseJson) {
     console.log(responseJson)
-    for (let i = 0; i < responseJson.hits.length; i++) {
-        let ingredients = responseJson.hits[i].recipe.ingredientLines.map((a) => {
-            return `<li>${a}</li>`
-        });
-        $('#js-results').append(`<div class="recipe"><h3>${responseJson.hits[i].recipe.label}</h3>
-        <img src="${responseJson.hits[i].recipe.image}" class="child"> 
-          <ul>
-          <li>Serving Size:</li>
-          <li>Diet Labels:${responseJson.hits[i].recipe.healthLabels}</li>
-          </ul>
-        <hr>
-        <h4>Ingredients</h4>
-        <ul id="js-ingredients">
-        ${ingredients.join('')}
-        </ul>
-        <a href="${responseJson.hits[i].recipe.url}" class="button" target="_blank">View Instructions</a>
-        <button id="js-beer-results">Click for Beer Recs</button> 
-            <div class="js-beer-results-list hidden"></div>
-        </div>`
-        )
-    };
+    // we can't always assume responseJson will have the .hits property
+    let { hits = [] } = responseJson;
+    if (hits.length > 0) {
+        for (let i = 0; i < hits.length; i++) {
+            let ingredients = responseJson.hits[i].recipe.ingredientLines.map((a) => {
+                return `<li>${a}</li>`
+            });
+            // TODO: add alt attribute to img tag below
+            $('#js-results').append(`<div class="recipe"><h3>${responseJson.hits[i].recipe.label}</h3>
+                <img src="${responseJson.hits[i].recipe.image}" class="child" alt="temp"> 
+                <ul>
+                <li>Serving Size:</li>
+                <li>Diet Labels:${responseJson.hits[i].recipe.healthLabels}</li>
+                </ul>
+                <hr>
+                <h4>Ingredients</h4>
+                <ul id="js-ingredients-${i}">
+                    ${ingredients.join('')}
+                </ul>
+                <a href="${responseJson.hits[i].recipe.url}" class="button" target="_blank">View Instructions</a>
+                <button id="js-beer-results-${i}" class="js-beer-results">Click for Beer Recs</button> 
+                    <div class="js-beer-results-list hidden"></div>
+                </div>`
+            );
+        }
+    } else {
+        $('#js-results').append(`<div><strong>no results</strong></div>`);
+    }
+    
     $('#js-results').removeClass('hidden');
 }
 
 
 function getBeerRec() {
-    $('main').on('click', '#js-beer-results', (event) => {
+    $('main').on('click', '.js-beer-results', (event) => {
         let targetedDiv = $(event.target).siblings(".js-beer-results-list");
         console.log(targetedDiv)
         let query = $(event.target).closest(".recipe").children("h3").text();
@@ -85,12 +93,20 @@ function getBeerRec() {
 }
 
 function displayBeers(responseJson, targetedDiv) {
-    for (let i = 0; i < 3; i++) {
-        $(targetedDiv).append(`<div class="beers"><h3>Beer Recomendations based of your recipe....</h3>
-          <h4>${responseJson[i].name}</h4>
-          <img src="${responseJson[i].image_url}" alt="" width="20%">
-          <p>${responseJson[i].description}</p></div>`)
+    // we can't assume there will always be 3 or more results in responseJson
+    // so we can limit our loop to both our upper limit 3 and the length of results
+    let { length = 0 } = responseJson;
+    if (length > 0) {
+        for (let i = 0; i < 3 && i < length; i++) {
+            $(targetedDiv).append(`<div class="beers"><h3>Beer Recomendations based of your recipe....</h3>
+            <h4>${responseJson[i].name}</h4>
+            <img src="${responseJson[i].image_url}" alt="" width="20%">
+            <p>${responseJson[i].description}</p></div>`)
+        }
+    } else {
+        $(targetedDiv).append(`<div><strong>no results</strong></div>`);
     }
+    
     $(targetedDiv).removeClass('hidden');
 }
 
