@@ -59,7 +59,7 @@ function displayRecipes(responseJson) {
         </ul>
         <a href="${responseJson.hits[i].recipe.url}" class="button" target="_blank">View Instructions</a>
         <button id="js-beer-results">Click for Beer Recs</button> 
-            <div id="js-beer-results-list" class="hidden"></div>
+            <div class="js-beer-results-list hidden"></div>
         </div>`
         )
     };
@@ -69,7 +69,7 @@ function displayRecipes(responseJson) {
 
 function getBeerRec() {
     $('main').on('click', '#js-beer-results', (event) => {
-        let targetedDiv = $(event.target).find("#js-beer-results-list")
+        let targetedDiv = $(event.target).siblings(".js-beer-results-list");
         console.log(targetedDiv)
         let query = $(event.target).closest(".recipe").children("h3").text();
         query = query.replace(/[^a-zA-Z ]/g, "").replace('and','').split(" ").filter(item => item)
@@ -84,7 +84,6 @@ function getBeerRec() {
     })
 }
 
-/*displaybeer function not attaching results to correct div. adds all results to top recipe results div*/
 function displayBeers(responseJson, targetedDiv) {
     for (let i = 0; i < 3; i++) {
         $(targetedDiv).append(`<div class="beers"><h3>Beer Recomendations based of your recipe....</h3>
@@ -92,7 +91,7 @@ function displayBeers(responseJson, targetedDiv) {
           <img src="${responseJson[i].image_url}" alt="" width="20%">
           <p>${responseJson[i].description}</p></div>`)
     }
-    $("#js-beer-results-list").removeClass('hidden');
+    $(targetedDiv).removeClass('hidden');
 }
 
 function initialize() {

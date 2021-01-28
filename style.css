@@ -10,9 +10,10 @@ h1{
     text-align: center;
     color: #FCEADE;
 }
+
 .parent{
     display: flex;
-    flex-flow: column wrap;
+    flex-flow: column;
     align-items: center;
     background-color: #25CED1;
     border-radius: 5px;
@@ -53,13 +54,15 @@ form input[type="checkbox"]+ label{
 
 } 
 button{
-    border-radius: 2em ;
-    box-sizing: border-box;
     padding: 1em;
     background-color: #FCEADE;
-
-
+    margin:auto;
+    display: block;
+    border: none;
+    background-color: #FF8A5B;
+    color:#FCEADE ;
 }
+
 div{
     margin: 2%;
     border: 5px #FF8A5B solid;
@@ -67,6 +70,7 @@ div{
     padding: 2%;
     background-color: #25ced1;
     width: 90%;
+    
     
 }
 
