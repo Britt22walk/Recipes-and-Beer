@@ -6,9 +6,18 @@ body{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     background-color: #EA526F;
 }
-h1{
+h1, h2, h3, h4 {
     text-align: center;
     color: #FCEADE;
+}
+
+p{
+    text-align: center;
+    color:#FCEADE;
+}
+
+ul{
+    text-align: left;
 }
 
 .parent{
@@ -32,6 +41,10 @@ img{
     flex-grow: 1;
 }
 
+a{
+    align-content: center;
+}
+
 .results{
     border: 5px #ff8a5b solid;
     padding: 5px;
@@ -40,27 +53,54 @@ img{
     width: 80%;
 }
 
+.js-beer-results-list > div{
+    flex: 1;
+    border: none;
+    max-width: 100%;
+    padding: 0;
+}
+
+.js-beer-results-list{
+    display: flex;
+    flex-flow:column;
+    border: none;
+    align-items: center;
+}
+
+.beer-img{
+    width: 30%;
+
+}
+
 form{
     background-color: #25CED1;
 }
+
 form label{
-    display: block;
     margin-top: 5px;
     background-color: #25ced1;
+    text-align: center;
 }
 
 form input[type="checkbox"]+ label{
     font-size: 16px;
+    
+}
 
-} 
+form input[type="text"]{
+    font-size: 16px;
+    width: 100%;  
+}
+
 button{
     padding: 1em;
     background-color: #FCEADE;
-    margin:auto;
+    margin: 20px auto;
     display: block;
     border: none;
     background-color: #FF8A5B;
     color:#FCEADE ;
+    border-radius: 1px;
 }
 
 div{
@@ -69,9 +109,17 @@ div{
     border-radius: 10px;
     padding: 2%;
     background-color: #25ced1;
-    width: 90%;
-    
-    
+    width: 95%;
+}
+
+center{
+    text-align: center;
+    align-content: center;
+    align-items:center;
+}
+
+hr{
+    width: 50%;
 }
 
 .hidden{
@@ -79,6 +127,11 @@ div{
 }
 
 @media screen and (min-width: 600px) {
+
+    section{
+        max-width: 600px;
+        margin:auto;
+    }
     .parent{
         display: flex;
         flex-flow: row wrap;

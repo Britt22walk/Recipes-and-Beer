@@ -42,27 +42,31 @@ function formatQuery(params) {
 
 function displayRecipes(responseJson) {
     console.log(responseJson)
-    for (let i = 0; i < responseJson.hits.length; i++) {
-        let ingredients = responseJson.hits[i].recipe.ingredientLines.map((a) => {
-            return `<li>${a}</li>`
-        });
-        $('#js-results').append(`<div class="recipe"><h3>${responseJson.hits[i].recipe.label}</h3>
-        <img src="${responseJson.hits[i].recipe.image}" class="child"> 
-          <ul>
-          <li>Serving Size:</li>
-          <li>Diet Labels:${responseJson.hits[i].recipe.healthLabels}</li>
-          </ul>
-        <hr>
-        <h4>Ingredients</h4>
-        <ul id="js-ingredients">
-        ${ingredients.join('')}
-        </ul>
-        <a href="${responseJson.hits[i].recipe.url}" class="button" target="_blank">View Instructions</a>
-        <button id="js-beer-results">Click for Beer Recs</button> 
-            <div class="js-beer-results-list hidden"></div>
-        </div>`
-        )
-    };
+    if(responseJson.hits.length <= 0){
+        $('#js-results').append(`<p>NO RESULTS FOUND. PLEASE TRY AGAIN.</p>`)
+        } else {
+        for (let i = 0; i < responseJson.hits.length; i++) {
+            let ingredients = responseJson.hits[i].recipe.ingredientLines.map((a) => {
+                return `<li>${a}</li>`
+            });
+            $('#js-results').append(`<div class="recipe"><h3>${responseJson.hits[i].recipe.label}</h3>
+            <img src="${responseJson.hits[i].recipe.image}" class="child"> 
+            <ul>
+            <li>Serving Size:</li>
+            <li>Diet Labels:${responseJson.hits[i].recipe.healthLabels}</li>
+            </ul>
+            <hr>
+            <h4>Ingredients</h4>
+            <ul id="js-ingredients">
+            ${ingredients.join('')}
+            </ul>
+            <a href="${responseJson.hits[i].recipe.url}" class="center" target="_blank" style="text-align:center">View Instructions</a>
+            <br>
+            <button id="js-beer-results">Click for Beer Recs</button>
+                <div class="js-beer-results-list hidden"><h3>Beer Recomendations based on your recipe....</h3></div>
+            </div>`
+            )
+        };}
     $('#js-results').removeClass('hidden');
 }
 
@@ -85,11 +89,11 @@ function getBeerRec() {
 }
 
 function displayBeers(responseJson, targetedDiv) {
-    for (let i = 0; i < 3; i++) {
-        $(targetedDiv).append(`<div class="beers"><h3>Beer Recomendations based of your recipe....</h3>
-          <h4>${responseJson[i].name}</h4>
-          <img src="${responseJson[i].image_url}" alt="" width="20%">
-          <p>${responseJson[i].description}</p></div>`)
+    console.log(responseJson)
+        for (let i = 0; i < 3; i++) {
+            $(targetedDiv).append(`<h4>${responseJson[i].name}</h4>
+            <div class="beer-img"><img src="${responseJson[i].image_url}" alt="none"></div>
+            <div><p>${responseJson[i].description}</p></div><hr>`)
     }
     $(targetedDiv).removeClass('hidden');
 }
