@@ -6,9 +6,14 @@ body{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     background-color: #EA526F;
 }
-h1, h2, h3, h4 {
+h1, h2, h3 {
     text-align: center;
     color: #FCEADE;
+}
+
+h4{
+    text-align:center;
+    color:black;
 }
 
 p{
@@ -54,10 +59,8 @@ a{
 }
 
 .js-beer-results-list > div{
-    flex: 1;
     border: none;
     max-width: 100%;
-    padding: 0;
 }
 
 .js-beer-results-list{
@@ -67,9 +70,15 @@ a{
     align-items: center;
 }
 
-.beer-img{
-    width: 30%;
+.beer-child{
+    text-align: center;
+    margin:0 auto;
+    padding: 0;
+}
 
+.beer-child > img{
+    width: 20%;
+    height: 20%;
 }
 
 form{
@@ -132,6 +141,8 @@ hr{
         max-width: 600px;
         margin:auto;
     }
+
+
     .parent{
         display: flex;
         flex-flow: row wrap;
@@ -140,14 +151,38 @@ hr{
         margin: auto;
         justify-content: center;
     }
-     
+     #js-results{
+         max-width: fit-content;
+     }
+
+    .beer-child{
+        display: block;
+        flex-grow: 1;
+        margin: 2px;
+        width: min-content;
+        text-align: center;
+
+    }
+
+    .beer-child > img{
+        width: 20%;
+        margin: 5px auto;
+        
+    }
     .child{
         flex-grow: 1;
         margin: 5px;
+        max-width: 100%;
+    }
+
+    .head-child{
+        flex:1 0 100%;
     }
 
     img{
         width: 50%;
+        align-content:center;
+        margin: 10px;
     }
 
     .results{
@@ -163,7 +198,28 @@ hr{
         display: inline;
     }
     
+   
+
+    .js-beer-results-list{
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        align-items:baseline;
+        padding:0;
+        margin:auto;
+
+    }
+
+    .remove-border{
+        border:none
+    }
+
     .hidden{
-        display: none;
+        display:none;
+    }
+
+    .recipe{
+        justify-content: center;
+        text-align:center;
     }
 }

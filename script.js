@@ -63,8 +63,7 @@ function displayRecipes(responseJson) {
             <a href="${responseJson.hits[i].recipe.url}" class="center" target="_blank" style="text-align:center">View Instructions</a>
             <br>
             <button id="js-beer-results-${i}" class="js-beer-results">Click for Beer Recs</button>
-                <div class="js-beer-results-list hidden"><h3>Beer Recomendations based on your recipe....</h3></div>
-            </div>`
+                <div class="js-beer-results-list hidden"><h3 class="head-child">Beer Recomendations based on your recipe....</h3></div>`
             )
         };}
     $('#js-results').removeClass('hidden');
@@ -93,9 +92,9 @@ function displayBeers(responseJson, targetedDiv) {
     let {length=0} = responseJson;
     if(length > 0){
         for (let i = 0; i<3 && i<length; i++) {
-            $(targetedDiv).append(`<h4>${responseJson[i].name}</h4>
-            <div class="beer-img"><img src="${responseJson[i].image_url}" alt="none"></div>
-            <div><p>${responseJson[i].description}</p></div><hr>`)
+            $(targetedDiv).append(`<div class="beer-child"><h4>${responseJson[i].name}</h4>
+            <img src="${responseJson[i].image_url}" alt="none">
+            <p>${responseJson[i].description}</p></div>`)
         }
     } else {
         $(targetedDiv).append(`<p>NO RESULTS</p>`)
