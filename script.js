@@ -29,7 +29,9 @@ function getRecipes(query, dietFilter) {
             throw new Error(response.statusText)
         })
         .then(responseJson => displayRecipes(responseJson))
-        .catch(err => alert(`Something went wrong`));
+        .catch(err => { 
+            $('#js-results').append(`<p>SORRY BUT SOMETHING WENT WRONG.</p>`)
+        });
 }
 
 
@@ -43,7 +45,7 @@ function formatQuery(params) {
 function displayRecipes(responseJson) {
     console.log(responseJson)
     if(responseJson.hits.length <= 0){
-        $('#js-results').append(`<p>NO RESULTS FOUND. PLEASE TRY AGAIN.</p>`)
+        $('#js-results').append(`<p>NO RESULTS FOUND. PLEASE TRY ANOTHER SEARCH.</p>`)
         } else {
         for (let i = 0; i < responseJson.hits.length; i++) {
             let ingredients = responseJson.hits[i].recipe.ingredientLines.map((a) => {
