@@ -72,21 +72,16 @@ function displayRecipes(responseJson) {
 
 function getBeerRec() {
     $('main').on('click', '.js-beer-results', (event) => {
-         //targets and saves the js-beer-results-list element nearests the button clicked so we can pass to displayBeers function 
         let targetedDiv = $(event.target).siblings(".js-beer-results-list");
         console.log(targetedDiv)
-        //targets and saves the recipe title closests to the button that clicked 
         let query = $(event.target).closest(".recipe").children("h3").text();
-        //Removed unneeded characters, words, and creates and array from recipe title 
         query = query.replace(/[^a-zA-Z ]/g, "").replace('and','').split(" ").filter(item => item)
         console.log(query)
-        //runs API call for each item in the array 
         const requests = query.map(q => fetch(beerUrl + `food=${q}&per_page=3`))
         Promise.all(requests).then(responses => {
             return Promise.all(responses.map(res => res.json()));
         })
             .then(responsesJSON => {
-            //Flattened response object to array 
                 displayBeers(responsesJSON.flat(), targetedDiv);
             })
     })
