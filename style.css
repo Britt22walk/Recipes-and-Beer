@@ -11,13 +11,11 @@
     box-sizing: border-box;
 }
 
-.hidden{
-    display: none;
-}
 
 /*.....LAYOUT....*/
 section{
     max-width: 400px;
+    margin:auto;
 }
 
 .parent{
@@ -40,6 +38,7 @@ section{
     text-align: center;
     margin:0 auto;
     padding: 0;
+    border:2px;
 }
 
 div{
@@ -71,12 +70,9 @@ div{
     align-items: center;
 }
 
-.js-beer-results-list > div{
-    border: none;
-    max-width: 100%;
+.hidden{
+    display: none;
 }
-
-
 /*.....TYPOGRAPHY....*/
 body{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -126,14 +122,14 @@ button{
     border: none;
     background-color: var(--background-pink);
     color:var(--header-white);
-    border-radius: 1px;
+    border-radius: 2px;
 }
 
 /*.....IMAGE STYLING....*/
 
 
 img{
-    width: 100%;
+    width: 90%;
 }
 
 .beer-child > img{
@@ -161,11 +157,11 @@ hr{
     .parent{
         display: flex;
         flex-flow: row wrap;
-        align-items: center;
         padding:10px;
         margin: auto;
         justify-content: center;
     }
+
      #js-results{
          max-width: fit-content;
      }
@@ -225,10 +221,6 @@ hr{
         padding:0;
         margin:auto;
 
-    }
-
-    .remove-border{
-        border:none
     }
 
     .hidden{
