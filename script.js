@@ -60,9 +60,9 @@ function displayRecipes(responseJson) {
             <ul id="js-ingredients">
             ${ingredients.join('')}
             </ul>
-            <a href="${responseJson.hits[i].recipe.url}" class="center" target="_blank" style="text-align:center">View Instructions</a>
+            <a href="${responseJson.hits[i].recipe.url}" target="_blank" style="font-size:large;">View Instructions</a>
             <br>
-            <button id="js-beer-results-${i}" class="js-beer-results">Click for Beer Recs</button>
+            <button id="js-beer-results-${i}" class="js-beer-results">Click Here for Beer!</button>
                 <div class="js-beer-results-list hidden"><h3 class="head-child">Beer Recomendations based on your recipe....</h3></div>`
             )
         };}

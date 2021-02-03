@@ -1,66 +1,67 @@
+:root {
+    --background-pink:#F34B52;
+    --header-white:#FFFEFE;
+    --text-color:#000000;
+    --background-light:#FFFFFF;
+    --border-color:#26CED1;
+    --background-orange:#FF7F4E; 
+}
+
 *{
     box-sizing: border-box;
-
-}
-body{
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    background-color: #EA526F;
-}
-h1, h2, h3 {
-    text-align: center;
-    color: #FCEADE;
 }
 
-h4{
-    text-align:center;
-    color:black;
+.hidden{
+    display: none;
 }
 
-p{
-    text-align: center;
-    color:#FCEADE;
-}
-
-ul{
-    text-align: left;
+/*.....LAYOUT....*/
+section{
+    max-width: 400px;
 }
 
 .parent{
     display: flex;
     flex-flow: column;
     align-items: center;
-    background-color: #25CED1;
-    border-radius: 5px;
-    border: 5px #ff8a5b solid;
+    padding: 10px;
+    background-color: var(--background-orange);
+    border: 10px var(--border-color) solid;
+    border-radius: 10px;
+    max-width: fit-content;
 }
 
-.results-div{
-    width: 80%;
-    justify-content: center;
-}
-
-img{
-    width: 100%;
-}
 .child{
     flex-grow: 1;
+    margin:20px;
 }
 
-a{
-    align-content: center;
+.beer-child{
+    text-align: center;
+    margin:0 auto;
+    padding: 0;
+}
+
+div{
+    margin: 2%;
+    border: 10px var(--border-color) solid;
+    border-radius: 10px;
+    padding: 2%;
+    background-color: var(--background-light);
+    width: 95%;
 }
 
 .results{
-    border: 5px #ff8a5b solid;
+    border: 5px var(--border-color) solid;
     padding: 5px;
     border-radius: 5px;
     margin: auto;
     width: 80%;
 }
 
-.js-beer-results-list > div{
-    border: none;
-    max-width: 100%;
+.results-div{
+    width: 80%;
+    justify-content: center;
 }
 
 .js-beer-results-list{
@@ -70,30 +71,47 @@ a{
     align-items: center;
 }
 
-.beer-child{
+.js-beer-results-list > div{
+    border: none;
+    max-width: 100%;
+}
+
+
+/*.....TYPOGRAPHY....*/
+body{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color:var(--background-pink);
+}
+
+h1 {
     text-align: center;
-    margin:0 auto;
-    padding: 0;
+    color: var(--header-white);
 }
 
-.beer-child > img{
-    width: 20%;
-    height: 20%;
+h4, h2, h3 {
+    text-align:center;
+    color:var(--text-color);
 }
 
+p{
+    text-align: center;
+    color:var(--text-color);
+    font-size:18px;
+}
+
+ul{
+    text-align: left;
+}
+
+/*.....FORM STYLING....*/
 form{
-    background-color: #25CED1;
+    background-color:var(--background-orange);
 }
 
 form label{
+    display: block;
     margin-top: 5px;
-    background-color: #25ced1;
-    text-align: center;
-}
-
-form input[type="checkbox"]+ label{
-    font-size: 16px;
-    
+    background-color: var(--background-light);  
 }
 
 form input[type="text"]{
@@ -103,37 +121,34 @@ form input[type="text"]{
 
 button{
     padding: 1em;
-    background-color: #FCEADE;
-    margin: 20px auto;
+    margin: 10px auto;
     display: block;
     border: none;
-    background-color: #FF8A5B;
-    color:#FCEADE ;
+    background-color: var(--background-pink);
+    color:var(--header-white);
     border-radius: 1px;
 }
 
-div{
-    margin: 2%;
-    border: 5px #FF8A5B solid;
-    border-radius: 10px;
-    padding: 2%;
-    background-color: #25ced1;
-    width: 95%;
+/*.....IMAGE STYLING....*/
+
+
+img{
+    width: 100%;
 }
 
-center{
-    text-align: center;
-    align-content: center;
-    align-items:center;
+.beer-child > img{
+    width: 20%;
+    height: 20%;
 }
+
+/*....HORIZONTAL RULE....*/
+
 
 hr{
     width: 50%;
 }
 
-.hidden{
-    display: none;
-}
+
 
 @media screen and (min-width: 600px) {
 
@@ -186,19 +201,21 @@ hr{
     }
 
     .results{
-        border: 5px #ff8a5b solid;
+        border: 5px var(--border-color) solid;
         padding: 1px;
         border-radius: 5px;
         margin: auto 600px;
         width: 100%;
     }
 
-    form input[type="checkbox"]+ label{
-        font-size: 16px;
-        display: inline;
+
+    form label{
+        display: block;
+        margin-top: 5px;
+        font-size: 20px;
+        background-color: var(--background-light); 
+        display: inline-block; 
     }
-    
-   
 
     .js-beer-results-list{
         display: flex;
@@ -223,3 +240,29 @@ hr{
         text-align:center;
     }
 }
+
+
+/*.....LINK STYLING....*/
+
+a:link {
+    color: #0a5455;
+    background-color: transparent;
+  }
+  
+  a:visited {
+    color: #0a5455;
+    background-color: transparent;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: #FF8A5B;
+    background-color: transparent;
+    text-decoration: underline;
+  }
+  
+  a:active {
+    color: #26CED1;
+    background-color: transparent;
+    text-decoration: underline;
+  }
