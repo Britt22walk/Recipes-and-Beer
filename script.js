@@ -52,14 +52,14 @@ function displayRecipes(responseJson) {
                 return `<li>${a}</li>`
             });
             $('#js-results').append(`<div class="recipe"><h3>${responseJson.hits[i].recipe.label}</h3>
-            <img src="${responseJson.hits[i].recipe.image}" class="child"> 
+            <img src="${responseJson.hits[i].recipe.image}" class="child" alt="${responseJson.hits[i].recipe.label}"> 
             <ul>
             <li>Serving Size:</li>
             <li>Diet Labels:${responseJson.hits[i].recipe.healthLabels}</li>
             </ul>
             <hr>
             <h4>Ingredients</h4>
-            <ul id="js-ingredients">
+            <ul id="js-ingredients-${i}">
             ${ingredients.join('')}
             </ul>
             <a href="${responseJson.hits[i].recipe.url}" target="_blank" style="font-size:large;">View Instructions</a>
@@ -95,7 +95,7 @@ function displayBeers(responseJson, targetedDiv) {
     if(length > 0){
         for (let i = 0; i<3 && i<length; i++) {
             $(targetedDiv).append(`<div class="beer-child"><h4>${responseJson[i].name}</h4>
-            <img src="${responseJson[i].image_url}" alt="none">
+            <img src="${responseJson[i].image_url}" alt="${responseJson[i].name}">
             <p>${responseJson[i].description}</p></div>`)
         }
     } else {
